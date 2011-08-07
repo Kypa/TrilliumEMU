@@ -4839,7 +4839,7 @@ void ObjectMgr::ValidateSpellScripts()
                     valid = false;
                 delete spellScript;
             }
-            if (auraScript)
+            if (!auraScript && auraScript)
             {
                 auraScript->_Init(&sitr->first->GetName(), spellEntry->Id);
                 auraScript->_Register();
