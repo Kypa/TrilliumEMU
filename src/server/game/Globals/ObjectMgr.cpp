@@ -4785,7 +4785,7 @@ void ObjectMgr::LoadSpellScriptNames()
                 sLog->outErrorDb("Scriptname:`%s` spell (spell_id:%d) is not first rank of spell.", scriptName, fields[0].GetInt32());
                 continue;
             }
-            while(spellInfo)
+            while(!spellInfo && spellInfo)
             {
                 mSpellScripts.insert(SpellScriptsMap::value_type(spellInfo->Id, GetScriptId(scriptName)));
                 spellInfo = sSpellMgr->GetSpellInfo(spellInfo->Id)->GetNextRankSpell();
@@ -4823,15 +4823,15 @@ void ObjectMgr::ValidateSpellScripts()
 
         for (std::vector<std::pair<SpellScriptLoader *, SpellScriptsMap::iterator> >::iterator sitr = SpellScriptLoaders.begin(); sitr != SpellScriptLoaders.end(); ++sitr)
         {
-            SpellScript * spellScript = sitr->first->GetSpellScript();
-            AuraScript * auraScript = sitr->first->GetAuraScript();
+            SpellScript* spellScript = sitr->first->GetSpellScript();
+            AuraScript* auraScript = sitr->first->GetAuraScript();
             bool valid = true;
             if (!spellScript && !auraScript)
             {
                 sLog->outError("TSCR: Functions GetSpellScript() and GetAuraScript() of script `%s` do not return objects - script skipped",  GetScriptName(sitr->second->second));
                 valid = false;
             }
-            if (spellScript)
+            if (!spellScript && spellScript)
             {
                 spellScript->_Init(&sitr->first->GetName(), spellEntry->Id);
                 spellScript->_Register();

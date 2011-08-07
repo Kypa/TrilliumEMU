@@ -1672,30 +1672,13 @@ struct SpellEffectEntry
     uint32    EffectRadiusIndex;                            // 15        m_effectRadiusIndex - spellradius.dbc
     //uint32   EffectRadiusMaxIndex;                        // 16        4.0.0
     float     EffectRealPointsPerLevel;                     // 17        m_effectRealPointsPerLevel
-    uint32    EffectSpellClassMaskA[3];                     // 18        m_effectSpellClassMaskA, effect 0
+    flag96    EffectSpellClassMask;                         // 18        m_effectSpellClassMaskA, effect 0
     uint32    EffectTriggerSpell;                           // 19        m_effectTriggerSpell
     uint32    EffectImplicitTargetA;                        // 20        m_implicitTargetA
     uint32    EffectImplicitTargetB;                        // 21        m_implicitTargetB
     uint32    EffectSpellId;                                // 22        new 4.0.0
     uint32    EffectIndex;                                  // 23        new 4.0.0
     //uint32  Unk0                                          // 24        4.2.0
-
-    // helpers
-    uint32 GetEffectMechanic() const { return EffectMechanic; }
-    int32  GetEffectBasePoints() const { return EffectBasePoints; }
-    uint32 GetEffectItemType() const { return EffectItemType; }
-    uint32 GetEffectTriggerSpell() const { return EffectTriggerSpell; }
-    uint32 GetEffectAmplitude() const { return EffectAmplitude; }
-    int32 GetEffectMiscValue() const { return EffectMiscValue; }
-    int32 GetEffectMiscValueB() const { return EffectMiscValueB; }
-    uint32 GetEffectChainTarget() const { return EffectChainTarget; }
-    int32 GetEffectDieSides() const { return EffectDieSides; }
-    float GetEffectPointsPerComboPoint() const { return EffectPointsPerComboPoint; }
-    float GetEffectRealPointsPerLevel() const { return EffectRealPointsPerLevel; }
-    uint32 GetEffectRadiusIndex() const { return EffectRadiusIndex; }
-    float GetEffectDamageMultiplier() const { return EffectDamageMultiplier; }
-    float GetEffectValueMultiplier() const { return EffectValueMultiplier; }
-    float GetEffectBonusMultiplier() const { return EffectBonusMultiplier; }
 };
 
 // SpellEquippedItems.dbc
@@ -1859,98 +1842,6 @@ struct SpellEntry
     uint32 SpellTargetRestrictionsId;                       // 45       SpellTargetRestrictions.dbc
     uint32 SpellTotemsId;                                   // 46       SpellTotems.dbc
     //uint32 ResearchProject;                               // 47       ResearchProject.dbc
-
-    int32 GetEffectBasePoints(uint32 eff) const;
-    //SpellEffectEntry
-    uint32 GetEffectItemType(uint32 eff) const;
-    uint32 GetEffectTriggerSpell(uint32 eff) const;
-    uint32 GetEffectAmplitude(uint32 eff) const;
-    int32 GetEffectMiscValue(uint32 eff) const;
-    int32 GetEffectMiscValueB(uint32 eff) const;
-    uint32 GetEffectChainTarget(uint32 eff) const;
-    int32 GetEffectDieSides(uint32 eff) const;
-    float GetEffectPointsPerComboPoint(uint32 eff) const;
-    float GetEffectRealPointsPerLevel(uint32 eff) const;
-    uint32 GetEffectRadiusIndex(uint32 eff) const;
-    float GetEffectDamageMultiplier(uint32 eff) const;
-    float GetEffectBonusMultiplier(uint32 eff) const;
-    uint32 GetEffectMechanic(uint32 eff) const;
-    float GetEffectValueMultiplier(uint32 eff) const;
-    uint32 GetEffectSpellClassMask(uint32 eff) const;
-
-    // struct access functions
-    SpellAuraOptionsEntry const* GetSpellAuraOptions() const;
-    SpellAuraRestrictionsEntry const* GetSpellAuraRestrictions() const;
-    SpellCastingRequirementsEntry const* GetSpellCastingRequirements() const;
-    SpellCategoriesEntry const* GetSpellCategories() const;
-    SpellClassOptionsEntry const* GetSpellClassOptions() const;
-    SpellCooldownsEntry const* GetSpellCooldowns() const;
-    SpellEffectEntry const* GetSpellEffect(uint32 eff) const;
-    SpellEquippedItemsEntry const* GetSpellEquippedItems() const;
-    SpellInterruptsEntry const* GetSpellInterrupts() const;
-    SpellLevelsEntry const* GetSpellLevels() const;
-    SpellPowerEntry const* GetSpellPower() const;
-    SpellReagentsEntry const* GetSpellReagents(uint8 reagent) const;
-    SpellScalingEntry const* GetSpellScaling() const;
-    SpellShapeshiftEntry const* GetSpellShapeshift() const;
-    SpellTargetRestrictionsEntry const* GetSpellTargetRestrictions() const;
-    SpellTotemsEntry const* GetSpellTotems() const;
-
-    // single fields
-    uint32 GetManaCost() const;
-    uint32 GetPreventionType() const;
-    uint32 GetCategory() const;
-    uint32 GetStartRecoveryTime() const;
-    uint32 GetMechanic() const;
-    uint32 GetRecoveryTime() const;
-    uint32 GetCategoryRecoveryTime() const;
-    uint32 GetStartRecoveryCategory() const;
-    uint32 GetSpellLevel() const;
-    int32 GetEquippedItemClass() const;
-    int32 GetEquippedItemSubClassMask() const;
-    int32 GetEquippedItemInventoryTypeMask() const;
-    uint32 GetSpellFamilyName() const;
-    flag96 GetSpellFamilyFlags() const;
-    uint32 GetDmgClass() const;
-    uint32 GetDispel() const;
-    uint32 GetMaxAffectedTargets() const;
-    uint32 GetStackAmount() const;
-    uint32 GetManaCostPercentage() const;
-    uint32 GetProcCharges() const;
-    uint32 GetProcChance() const;
-    uint32 GetMaxLevel() const;
-    uint32 GetManaPerSecond() const;
-    uint32 GetRequiresSpellFocus() const;
-    uint32 GetSpellEffectIdByIndex(uint32 index) const;
-    uint32 GetSpellEffectMechanic(uint32 index) const;
-    uint32 GetSpellEffectBasePoints(uint32 index) const;    
-    uint32 GetAuraInterruptFlags() const;
-    uint32 GetEffectImplicitTargetAByIndex(uint32 index) const;
-    uint32 GetEffectImplicitTargetBByIndex(uint32 index) const;
-    int32 GetAreaGroupId() const;
-    uint32 GetFacingCasterFlags() const;
-    uint32 GetBaseLevel() const;
-    uint32 GetInterruptFlags() const;
-    uint32 GetTargetCreatureType() const;    
-    uint32 GetStances() const;
-    uint32 GetStancesNot() const;
-    uint32 GetProcFlags() const;
-    uint32 GetChannelInterruptFlags() const;
-    uint32 GetManaCostPerLevel() const;
-    uint32 GetTargets() const;
-    uint32 GetEffectApplyAuraNameByIndex(uint32 index) const;
-    //SpellAuraRestrictionsEntry
-    uint32 GetTargetAuraSpell() const;
-    uint32 GetTargetAuraState() const;
-    uint32 GetCasterAuraSpell() const;
-    uint32 GetCasterAuraState() const;
-    uint32 GetCasterAuraStateNot() const;
-    uint32 GetExcludeTargetAuraSpell() const;
-    uint32 GetExcludeCasterAuraSpell() const;
-    uint32 GetTargetAuraStateNot() const;
-    //SpellReagentsEntry
-    uint32 GetReagent(uint8 reagent) const;
-    uint32 GetReagentCount(uint8 reagent) const; 
 };
 
 typedef std::set<uint32> SpellCategorySet;
