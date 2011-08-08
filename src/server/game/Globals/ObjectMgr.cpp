@@ -4826,7 +4826,7 @@ void ObjectMgr::ValidateSpellScripts()
             SpellScript* spellScript = sitr->first->GetSpellScript();
             AuraScript* auraScript = sitr->first->GetAuraScript();
             bool valid = true;
-            if (!spellScript || !auraScript)
+            if (!spellScript && !auraScript)
             {
                 sLog->outError("TSCR: Functions GetSpellScript() and GetAuraScript() of script `%s` do not return objects - script skipped",  GetScriptName(sitr->second->second));
                 valid = false;
