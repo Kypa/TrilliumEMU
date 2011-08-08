@@ -4831,7 +4831,7 @@ void ObjectMgr::ValidateSpellScripts()
                 sLog->outError("TSCR: Functions GetSpellScript() and GetAuraScript() of script `%s` do not return objects - script skipped",  GetScriptName(sitr->second->second));
                 valid = false;
             }
-            if (spellScript)
+            if (!auraScript && spellScript)
             {
                 spellScript->_Init(&sitr->first->GetName(), spellEntry->Id);
                 spellScript->_Register();
@@ -4839,7 +4839,7 @@ void ObjectMgr::ValidateSpellScripts()
                     valid = false;
                 delete spellScript;
             }
-            if (auraScript)
+            if (!spellScript && auraScript)
             {
                 auraScript->_Init(&sitr->first->GetName(), spellEntry->Id);
                 auraScript->_Register();
